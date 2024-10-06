@@ -1,0 +1,10 @@
+app.use(express.static('public'));
+
+
+var myLogger = function (req, res, next) {
+    console.log('LOGGED');
+    next();
+};
+app.use(myLogger);
+
+

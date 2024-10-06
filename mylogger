@@ -7,4 +7,16 @@ var myLogger = function (req, res, next) {
 };
 app.use(myLogger);
 
+-----------------------
+var requestTime = function (req, res, next) {
+    req.thomas = Date.now();
+    next();
+};
+app.use(requestTime);
+
+app.get('/', (req, res) => {
+    var responseText = 'Hello World!';
+    responseText += 'Requested at: ' + req.thomas + '555555555555555555555555555';
+    res.send(responseText);
+})
 

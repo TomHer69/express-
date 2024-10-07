@@ -1,0 +1,78 @@
+function Test()
+{
+    fetch('http://localhost:3000/Time')
+        .then(function (res) { return res.text() })
+        .then(function (data) { console.log(data) })
+}
+app.get('/Time', (req, res) => {
+    console.log("Time=" + new Date().toTimeString('de-DE'));
+    res.send(new Date());
+});
+
+
+function Test()
+{
+    fetch('http://localhost:3000/1')
+        .then(function (res) { return res.json() })
+        .then(function (data) { console.log(data) })
+}
+app.get('/:id', (req, res) => {
+   
+
+let users = [
+    { id: 1, name: 'John Doe', email: 'john@example.com' },
+    { id: 2, name: 'Jane Doe', email: 'jane@example.com' },
+    { id: 3, name: 'Thomas Herzog', email: 'Th.Herzog@web.de' },
+    { id: 4, name: 'Rainer Herzog', email: 'Rainer.Herzog@web.de' },
+];
+    const userId = parseInt(req.params.id);
+    const user = users.find(u => u.id === userId);
+
+    if (!user) {
+        return res.status(404).json({ message: 'Benutzer nicht gefunden' });
+    }
+
+    res.json(user);
+    
+});
+
+
+
+
+function MitParameter()
+{
+    const data = {
+        name: "Thomas",
+        age: 55
+    }
+    fetch('http://localhost:3000/MitParameter', {
+        method: 'POST',  // HTTP Methode
+        headers: {
+            'Content-Type': 'application/json'  // Setzt den Header für JSON
+        },
+        body: JSON.stringify(data)  // Konvertiert das JavaScript-Objekt in JSON
+    })
+        .then(response => response.json())  // Antwort als JSON
+        .then(data =>
+        {
+            console.log('Success:', data)
+        })
+        .catch(error =>
+        {
+            console.error('Error:', error)
+        });
+}
+app.post('/MitParameter', (req, res) =>
+{
+
+    const { name, age } = req.body;
+    
+
+    console.log("MitParameter");
+    //console.log(data);
+    res.json({ Name: name, Alter: age*2 });
+});
+
+
+
+
